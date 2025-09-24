@@ -1,5 +1,6 @@
 package entidades;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
@@ -18,12 +19,12 @@ public class Tecnico extends PanacheEntityBase {
 
     public String nacionalidade;
 
-    public Date dataNascimento;
+    public LocalDate dataNascimento;
 
     public String timeAtual;
 
     public Integer titulos;
 
-    public Date dataInicio;
+    public LocalDate dataInicio;
 
 }

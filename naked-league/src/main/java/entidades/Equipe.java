@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Time extends PanacheEntityBase {
+public class Equipe extends PanacheEntityBase {
 
     @Id
     @GeneratedValue (strategy = jakarta.persistence.GenerationType.IDENTITY)
@@ -18,6 +18,6 @@ public class Time extends PanacheEntityBase {
 
     public String cidade;  
 
-    public LocalDate Fundacao;
+    public LocalDate fundacao;
 
 }
