@@ -7,6 +7,7 @@ import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -33,6 +34,24 @@ public class JogadorRecurso {
         if (jogador != null) {
             jogador.delete();
         } 
+    }
+
+    @PUT
+    @Path("{id}")
+    @Transactional
+    public void editar (@PathParam("id") Long id, Jogador jogador) {
+        Jogador jogadorExistente = Jogador.findById(id);
+
+        if (jogadorExistente != null) {
+            jogadorExistente.nome = jogador.nome;
+            jogadorExistente.idade = jogador.idade;
+            jogadorExistente.posicao = jogador.posicao;
+            jogadorExistente.nacionalidade = jogador.nacionalidade;
+            jogadorExistente.email = jogador.email;
+            jogadorExistente.instituicao = jogador.instituicao;
+
+            jogadorExistente.persist();
+        }
     }
 
 

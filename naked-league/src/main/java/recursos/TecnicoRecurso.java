@@ -7,6 +7,7 @@ import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -34,5 +35,23 @@ public class TecnicoRecurso {
             tecnico.delete();
         } 
     }
+
+    @PUT
+    @Path("{id}")
+    @Transactional
+    public void editar (@PathParam("id") Long id, Tecnico tecnico) {
+        Tecnico tecnicoExistente = Tecnico.findById(id);
+
+        if (tecnicoExistente != null) {
+            tecnicoExistente.nome = tecnico.nome;
+            tecnicoExistente.nacionalidade = tecnico.nacionalidade;
+            tecnicoExistente.dataNascimento = tecnico.dataNascimento;
+            tecnicoExistente.timeAtual = tecnico.timeAtual;
+            tecnicoExistente.titulos = tecnico.titulos;
+            tecnicoExistente.idade = tecnico.idade;
+            tecnicoExistente.dataInicio = tecnico.dataInicio;
+
+            tecnicoExistente.persist();
+        }
 
 }

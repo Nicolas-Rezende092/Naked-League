@@ -7,6 +7,7 @@ import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -33,6 +34,21 @@ public class QuadraRecurso {
         if (quadra != null) {
             quadra.delete();
         } 
+    }
+
+    @PUT
+    @Path("{id}")
+    @Transactional
+    public void editar (@PathParam("id") Long id, Quadra quadra) {
+        Quadra quadraExistente = Quadra.findById(id);
+
+        if (quadraExistente != null) {
+            quadraExistente.nome = quadra.nome;
+            quadraExistente.localizacao = quadra.localizacao;
+            quadraExistente.capacidade = quadra.capacidade;
+
+            quadraExistente.persist();
+        }
     }
 
 }
