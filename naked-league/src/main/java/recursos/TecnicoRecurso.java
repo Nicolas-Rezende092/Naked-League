@@ -48,10 +48,10 @@ public class TecnicoRecurso {
             tecnicoExistente.dataNascimento = tecnico.dataNascimento;
             tecnicoExistente.timeAtual = tecnico.timeAtual;
             tecnicoExistente.titulos = tecnico.titulos;
-            tecnicoExistente.idade = tecnico.idade;
             tecnicoExistente.dataInicio = tecnico.dataInicio;
 
             tecnicoExistente.persist();
         }
 
+    }   
 }
