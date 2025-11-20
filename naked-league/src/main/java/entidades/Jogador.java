@@ -10,7 +10,7 @@ public class Jogador extends PanacheEntityBase {
 
     @Id
     @GeneratedValue (strategy = jakarta.persistence.GenerationType.IDENTITY)
-    public Integer id;
+    public Long id;
     
     public String nome;
 
