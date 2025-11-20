@@ -5,6 +5,8 @@ import java.util.List;
 import entidades.Olheiro;
 import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -20,5 +22,16 @@ public class OlheiroRecurso {
     @Transactional
     public void salvar(Olheiro olheiro) {
         olheiro.persist();
+    }
+
+    @DELETE
+    @Path("{id}")
+    @Transactional
+    public void excluir (@PathParam("id") Long id) {
+        Olheiro olheiro = Olheiro.findById(id);
+
+        if (olheiro != null) {
+            olheiro.delete();
+        } 
     }
 }

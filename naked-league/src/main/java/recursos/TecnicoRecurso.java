@@ -5,6 +5,8 @@ import java.util.List;
 import entidades.Tecnico;
 import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -20,6 +22,17 @@ public class TecnicoRecurso {
     @Transactional
     public void salvar(Tecnico tecnico) {
         tecnico.persist();
+    }
+
+    @DELETE
+    @Path("{id}")
+    @Transactional
+    public void excluir (@PathParam("id") Long id) {
+        Tecnico tecnico = Tecnico.findById(id);
+
+        if (tecnico != null) {
+            tecnico.delete();
+        } 
     }
 
 }
